@@ -1,18 +1,9 @@
-import logo from "./logo.svg";
 import { useState, useEffect } from "react";
 import BookCreate from "./components/BookCreate";
 import BookList from "./components/BookList";
 import axios from "axios";
 function App() {
   const [books, setBooks] = useState([]);
-  // const createBook = async (title) => {
-  //   const updatedBooks = [
-  //     ...books,
-  //     { id: Math.floor(Math.random() * 999), title },
-  //   ];
-  //   console.log(updatedBooks);
-  //   setBooks(updatedBooks);
-  // };
 
   const createBook = async (title) => {
     const response = await axios.post("http://localhost:3001/books", { title });
@@ -28,8 +19,6 @@ function App() {
   }, []);
 
   const deleteBookById = async (id) => {
-    // console.log("deleting book: ", id);
-
     await axios.delete(`http://localhost:3001/books/${id}`);
     const updatedBooks = books.filter((book) => {
       return book.id !== id;
