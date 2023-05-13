@@ -1,7 +1,12 @@
 import axios from "axios";
-import { createContext, useState } from "react";
+import { createContext, useState, useContext } from "react";
 
 const BooksContext = createContext();
+
+function useBooksContext() {
+  return useContext(BooksContext);
+}
+
 function Provider({ children }) {
   const [books, setBooks] = useState([]);
   const fetchBooks = async () => {
